@@ -1,13 +1,12 @@
 package com.example.delivery.data.models
 
-import com.google.gson.annotations.SerializedName
+import android.os.Parcelable
+import com.google.gson.annotations.Expose
+import kotlinx.android.parcel.Parcelize
 
-class Rol(
-    @SerializedName(value= "id") val id: String,
-    @SerializedName(value= "name") val name: String,
-    @SerializedName(value= "image") val image: String
-) {
-    override fun toString(): String {
-        return "Rol(id='$id', name='$name', image='$image')"
-    }
-}
+@Parcelize
+data class Rol(
+    @Expose
+    val name: String ?= null,
+
+): Parcelable

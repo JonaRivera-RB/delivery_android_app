@@ -19,6 +19,7 @@ class LoginPresenter (
             override fun success(user: User) {
                 loginView.showLoader(false)
 
+                /*
                 user.roles?.let { roles ->
                     if (roles.size > 1) {
                         loginView.showSelectRol()
@@ -26,6 +27,8 @@ class LoginPresenter (
                         loginView.showHome()
                     }
                 }
+
+                 */
             }
 
             override fun error(errorMessage: String) {

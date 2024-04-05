@@ -1,8 +1,6 @@
 package com.example.delivery.Activities.register.data
 
 import android.content.Context
-import com.example.delivery.Activities.Login.LoginData.LoginDataSource
-import com.example.delivery.data.api.RetrofitService
 import com.example.delivery.data.models.ResponseHttp
 import com.example.delivery.data.models.User
 import retrofit2.Call
@@ -13,7 +11,6 @@ class RegisterRemote(private val context: Context): RegisterDataSource {
 
     override fun register(user: User, callback: RegisterDataSource.RegisterCallback) {
         val call = RetrofitService.Builder()
-            .addHeaders(context)
             .getApi()
             .register(user)
 

@@ -1,6 +1,7 @@
 package com.example.delivery.Activities.Login.LoginData
 
 import com.example.delivery.data.models.User
+import com.example.delivery.data.models.api.Providers.UsersProvider
 
 class LoginRepository (
     private val loginRemote: LoginDataSource

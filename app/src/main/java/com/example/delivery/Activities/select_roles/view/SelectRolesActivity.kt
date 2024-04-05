@@ -39,6 +39,6 @@ class SelectRolesActivity : AppCompatActivity() {
 
     private fun getUserFromSession() {
         user = SessionManager.getInstance(this).getDataFromPreferences("user", User::class.java)
-        roles = user?.roles as ArrayList<Rol>
+        //roles = user?.roles as ArrayList<Rol>
     }
 }
