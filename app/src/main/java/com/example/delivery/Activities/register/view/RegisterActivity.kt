@@ -11,7 +11,7 @@ import android.widget.Toast
 import com.example.delivery.Activities.Injection
 import com.example.delivery.Activities.Login.LoginView.LoadingView
 import com.example.delivery.Activities.Login.LoginView.LoginPresenter
-import com.example.delivery.Extensions.isEmailValid
+import com.example.delivery.utils.Extensions.isEmailValid
 import com.example.delivery.data.models.api.Providers.UsersProvider
 import com.example.delivery.R
 import com.example.delivery.data.models.ResponseHttp

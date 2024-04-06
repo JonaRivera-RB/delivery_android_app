@@ -14,7 +14,7 @@ import com.example.delivery.Activities.Client.Home.ClientHomeActivity
 import com.example.delivery.Activities.Injection
 import com.example.delivery.Activities.register.view.RegisterActivity
 import com.example.delivery.Activities.select_roles.view.SelectRolesActivity
-import com.example.delivery.Extensions.isEmailValid
+import com.example.delivery.utils.Extensions.isEmailValid
 import com.example.delivery.R
 import com.example.delivery.data.models.User
 import com.example.delivery.utils.SharedPref

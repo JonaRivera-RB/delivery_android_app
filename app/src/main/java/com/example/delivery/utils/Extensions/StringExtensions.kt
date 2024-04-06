@@ -1,4 +1,4 @@
-package com.example.delivery.Extensions
+package com.example.delivery.utils.Extensions
 
 import android.text.TextUtils
 

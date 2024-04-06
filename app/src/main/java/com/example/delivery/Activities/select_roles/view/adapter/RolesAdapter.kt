@@ -12,7 +12,9 @@ import com.bumptech.glide.Glide
 import com.example.delivery.Activities.Client.Home.ClientHomeActivity
 import com.example.delivery.R
 import com.example.delivery.data.models.Rol
+import com.example.delivery.utils.SessionManager
 import com.example.delivery.utils.SharedPref
+import com.example.delivery.utils.enums.Roles
 
 class RolesAdapter(val context: Activity, val roles: ArrayList<Rol>): RecyclerView.Adapter<RolesAdapter.RolesViewHolder>() {
 
@@ -39,25 +41,21 @@ class RolesAdapter(val context: Activity, val roles: ArrayList<Rol>): RecyclerVi
     }
 
     private fun goToRol(rol: Rol) {
-        when (rol.name) {
-            "RESTAURANTE" -> {
-                sharedPref.save("rol", "RESTAURANTE")
-                val i = Intent(context, ClientHomeActivity::class.java)
-                context.startActivity(i)
-                //val i = Intent(context, RestaurantHomeActivity::class.java)
-                //context.startActivity(i)
-            }
-            "CLIENTE" -> {
-                sharedPref.save("rol", "CLIENTE")
+        when(rol.name) {
+            Roles.restaurant.label -> {
+                SessionManager.getInstance(context).setUserRol(Roles.client.label)
                 val i = Intent(context, ClientHomeActivity::class.java)
                 context.startActivity(i)
             }
-            "REPARTIDOR" -> {
-                sharedPref.save("rol", "REPARTIDOR")
+            Roles.client.label -> {
+                SessionManager.getInstance(context).setUserRol(Roles.client.label)
                 val i = Intent(context, ClientHomeActivity::class.java)
                 context.startActivity(i)
-                //val i = Intent(context, DeliveryHomeActivity::class.java)
-                //context.startActivity(i)
+            }
+            Roles.provider.label -> {
+                SessionManager.getInstance(context).setUserRol(Roles.client.label)
+                val i = Intent(context, ClientHomeActivity::class.java)
+                context.startActivity(i)
             }
         }
     }

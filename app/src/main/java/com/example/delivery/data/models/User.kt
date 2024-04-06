@@ -38,22 +38,6 @@ data class User (
     @SerializedName(value = "is_available")
     val isAvailable: String? = null,
 
-    @SerializedName("roles")
     @Expose
-    val dataString: String? = null
-): Parcelable {
-
-    val roles: List<Rol>? = dataString?.let { jsonString ->
-        try {
-            val jsonObject = Gson().fromJson(jsonString, JsonObject::class.java)
-            val rolesJsonArray = jsonObject.getAsJsonArray("roles")
-            val rolesList = mutableListOf<Rol>()
-            rolesJsonArray?.forEach { roleJson ->
-                rolesList.add(Gson().fromJson(roleJson, Rol::class.java))
-            }
-            rolesList
-        } catch (e: JsonSyntaxException) {
-            null
-        }
-    }
-}
+    val roles: ArrayList<Rol>? = null
+): Parcelable

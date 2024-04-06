@@ -6,5 +6,6 @@ class AppConstants {
         const val SESSION_PREF_NAME = "sessionPreferenceName"
 
         const val REMEMBER_SESSION_KEY = "remember_session"
+        const val USER_ROL = "userRol"
     }
 }
