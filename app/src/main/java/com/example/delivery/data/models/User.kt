@@ -46,10 +46,6 @@ data class User (
     val roles: List<Rol>? = dataString?.let { jsonString ->
         try {
             val jsonObject = Gson().fromJson(jsonString, JsonObject::class.java)
-            // Aquí necesitarás extraer la lista de roles del objeto JsonObject
-            // y deserializarla a una lista de objetos Rol
-            // Esto depende de cómo se esté estructurando el JSON en dataString
-            // Suponiendo que la lista de roles esté bajo la clave "roles"
             val rolesJsonArray = jsonObject.getAsJsonArray("roles")
             val rolesList = mutableListOf<Rol>()
             rolesJsonArray?.forEach { roleJson ->

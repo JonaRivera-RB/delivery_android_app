@@ -18,7 +18,7 @@ class SelectRolesActivity : AppCompatActivity() {
 
     private var rolesRecyclerView: RecyclerView ?= null
     private var user: User ?= null
-    private var roles: ArrayList<Rol> ?= null
+    private var roles = ArrayList<Rol>()
     private lateinit var adapter: RolesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,15 +30,13 @@ class SelectRolesActivity : AppCompatActivity() {
 
         getUserFromSession()
 
-        adapter = RolesAdapter()
+        adapter = RolesAdapter(this, roles)
         rolesRecyclerView?.adapter = adapter
-
-        adapter.removeAll()
-        roles?.let { adapter.addAll(it) }
     }
 
     private fun getUserFromSession() {
         user = SessionManager.getInstance(this).getDataFromPreferences("user", User::class.java)
-        //roles = user?.roles as ArrayList<Rol>
+        val rolesList = Gson().fromJson(user?.roles.toString(), Array<Rol>::class.java)
+        roles.addAll(rolesList)
     }
 }
