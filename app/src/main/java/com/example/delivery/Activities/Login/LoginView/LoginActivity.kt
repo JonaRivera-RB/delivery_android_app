@@ -10,14 +10,16 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import com.example.delivery.Activities.Client.Home.ClientHomeActivity
+import com.example.delivery.Activities.profiles.Client.Home.view.ClientHomeActivity
 import com.example.delivery.Activities.Injection
+import com.example.delivery.Activities.profile.save_image.view.SaveImageActivity
 import com.example.delivery.Activities.register.view.RegisterActivity
 import com.example.delivery.Activities.select_roles.view.SelectRolesActivity
 import com.example.delivery.utils.Extensions.isEmailValid
 import com.example.delivery.R
-import com.example.delivery.data.models.User
+import com.example.delivery.Activities.register.entities.User
 import com.example.delivery.utils.SharedPref
+import com.example.delivery.utils.objects.LoadingView
 import com.google.gson.Gson
 
 class LoginActivity : AppCompatActivity(), LoginContract.View {
@@ -81,41 +83,6 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun loginError(errorCode: String) {
-        Toast.makeText(this@LoginActivity, errorCode, Toast.LENGTH_SHORT).show()
-    }
-
-
-    private fun saveUserInSession(data: String) {
-        val sharedPreferences = SharedPref(this)
-        val gson = Gson()
-        val user = gson.fromJson(data, User::class.java)
-        sharedPreferences.save("user", user)
-    }
-}
-
-
-
-
-//TODO refactor
-object LoadingView {
-
-    private var dialog: Dialog? = null
-
-    fun showDialog(activity: Activity, message: String) {
-        dialog = Dialog(activity, R.style.ThemeDialogTransparent)
-        dialog?.setCancelable(false)
-        dialog?.setContentView(R.layout.loader_view)
-
-        val loaderText = dialog?.findViewById<TextView>(R.id.loadingMessage)
-        loaderText?.text = message
-        dialog?.show()
-    }
-
-    fun hideDialog() {
-        try {
-            dialog?.dismiss()
-        } catch (e: IllegalArgumentException) {
-            e.printStackTrace()
-        }
+        Toast.makeText(this, errorCode, Toast.LENGTH_SHORT).show()
     }
 }

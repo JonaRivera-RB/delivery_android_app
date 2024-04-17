@@ -1,6 +1,6 @@
 package com.example.delivery.Activities.Login.LoginData
 
-import com.example.delivery.data.models.User
+import com.example.delivery.Activities.register.entities.User
 
 
 interface LoginDataSource {

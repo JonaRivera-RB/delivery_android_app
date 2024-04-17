@@ -3,22 +3,16 @@ package com.example.delivery.Activities.register.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.delivery.Activities.Injection
-import com.example.delivery.Activities.Login.LoginView.LoadingView
-import com.example.delivery.Activities.Login.LoginView.LoginPresenter
+import com.example.delivery.Activities.profile.save_image.view.SaveImageActivity
 import com.example.delivery.utils.Extensions.isEmailValid
-import com.example.delivery.data.models.api.Providers.UsersProvider
 import com.example.delivery.R
-import com.example.delivery.data.models.ResponseHttp
-import com.example.delivery.data.models.User
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.delivery.Activities.register.entities.User
+import com.example.delivery.utils.objects.LoadingView
 
 class RegisterActivity : AppCompatActivity(), RegisterContract.View {
 
@@ -92,6 +86,9 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
 
     override fun showUserCreatedSuccess() {
         Toast.makeText(this, "usuario creado con éxito", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, SaveImageActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun showErrorView(error: String) {

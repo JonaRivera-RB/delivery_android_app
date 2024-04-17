@@ -2,7 +2,7 @@ package com.example.delivery.Activities.register.view
 
 import com.example.delivery.Activities.register.data.RegisterDataSource
 import com.example.delivery.Activities.register.data.RegisterRepository
-import com.example.delivery.data.models.User
+import com.example.delivery.Activities.register.entities.User
 
 class RegisterPresenter(
     private val repository: RegisterRepository,

@@ -9,18 +9,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.delivery.Activities.Client.Home.ClientHomeActivity
+import com.example.delivery.Activities.profiles.Client.Home.view.ClientHomeActivity
+import com.example.delivery.Activities.profiles.Delivery.home.view.DeliveryActivity
+import com.example.delivery.Activities.profiles.Restaurant.home.view.RestaurantActivity
 import com.example.delivery.R
 import com.example.delivery.data.models.Rol
 import com.example.delivery.utils.SessionManager
-import com.example.delivery.utils.SharedPref
 import com.example.delivery.utils.enums.Roles
-
-class RolesAdapter(val context: Activity, val roles: ArrayList<Rol>): RecyclerView.Adapter<RolesAdapter.RolesViewHolder>() {
-
-    val sharedPref = SharedPref(context)
-
-
+interface RolClickListener {
+    fun onRolClicked(rol: Rol)
+}
+class RolesAdapter(val context: Activity, val roles: ArrayList<Rol>, val listener: RolClickListener): RecyclerView.Adapter<RolesAdapter.RolesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RolesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.rol_card_view, parent, false)
         return RolesViewHolder(view)
@@ -37,27 +36,7 @@ class RolesAdapter(val context: Activity, val roles: ArrayList<Rol>): RecyclerVi
         holder.textViewRol.text = rol.name
         Glide.with(context).load(rol.imagen).into(holder.imageViewRol)
 
-        holder.itemView.setOnClickListener { goToRol(rol) }
-    }
-
-    private fun goToRol(rol: Rol) {
-        when(rol.name) {
-            Roles.restaurant.label -> {
-                SessionManager.getInstance(context).setUserRol(Roles.client.label)
-                val i = Intent(context, ClientHomeActivity::class.java)
-                context.startActivity(i)
-            }
-            Roles.client.label -> {
-                SessionManager.getInstance(context).setUserRol(Roles.client.label)
-                val i = Intent(context, ClientHomeActivity::class.java)
-                context.startActivity(i)
-            }
-            Roles.provider.label -> {
-                SessionManager.getInstance(context).setUserRol(Roles.client.label)
-                val i = Intent(context, ClientHomeActivity::class.java)
-                context.startActivity(i)
-            }
-        }
+        holder.itemView.setOnClickListener {listener.onRolClicked(rol) }
     }
 
     class RolesViewHolder(view: View): RecyclerView.ViewHolder(view) {

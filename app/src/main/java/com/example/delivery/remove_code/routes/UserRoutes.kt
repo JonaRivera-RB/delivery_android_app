@@ -1,7 +1,7 @@
 package com.example.delivery.data.models.api.routes
 
 import com.example.delivery.data.models.ResponseHttp
-import com.example.delivery.data.models.User
+import com.example.delivery.Activities.register.entities.User
 import retrofit2.Call
 import retrofit2.http.POST
 import retrofit2.http.Body

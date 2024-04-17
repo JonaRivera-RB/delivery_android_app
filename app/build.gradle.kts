@@ -51,14 +51,18 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.22")
-    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.appcompat:appcompat:1.5.0")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.tuyenmonkey:mkloader:1.4.0")
 
     //IMAGES
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 
+    //ImagePicker
+    implementation("com.github.jrvansuita:PickImage:3.0.2")
+    implementation("com.github.dhaval2404:imagepicker:2.1")
     //API
     //Retrofit
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")

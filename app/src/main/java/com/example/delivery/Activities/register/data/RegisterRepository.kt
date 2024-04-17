@@ -1,8 +1,6 @@
 package com.example.delivery.Activities.register.data
 
-import com.example.delivery.Activities.Login.LoginData.LoginDataSource
-import com.example.delivery.Activities.Login.LoginData.LoginRepository
-import com.example.delivery.data.models.User
+import com.example.delivery.Activities.register.entities.User
 
 class RegisterRepository(
     private val registerDataSource: RegisterDataSource

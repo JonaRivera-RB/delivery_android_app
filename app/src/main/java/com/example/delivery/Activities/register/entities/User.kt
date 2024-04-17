@@ -1,11 +1,9 @@
-package com.example.delivery.data.models
+package com.example.delivery.Activities.register.entities
 
 import android.os.Parcelable
+import com.example.delivery.data.models.Rol
 import com.google.gson.Gson
-import com.google.gson.JsonObject
-import com.google.gson.JsonSyntaxException
 import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class User (
@@ -13,16 +11,16 @@ data class User (
     val id: String? = null,
 
     @Expose
-    val name: String ?= null,
+    var name: String ?= null,
 
     @Expose
-    val lastname: String ?= null,
+    var lastname: String ?= null,
 
     @Expose
     val email: String ?= null,
 
     @Expose
-    val phone: String ?= null,
+    var phone: String ?= null,
 
     @Expose
     val password: String ?= null,
@@ -30,14 +28,18 @@ data class User (
     @Expose
     val image: String? = null,
 
+    //@SerializedName(value = "session_token")
     @Expose
-    @SerializedName(value = "session_token")
-    val sessionToken: String? = null,
+    val session_token: String? = null,
 
+    //@SerializedName(value = "is_available")
     @Expose
-    @SerializedName(value = "is_available")
-    val isAvailable: String? = null,
+    val is_available: String? = null,
 
     @Expose
     val roles: ArrayList<Rol>? = null
-): Parcelable
+): Parcelable {
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

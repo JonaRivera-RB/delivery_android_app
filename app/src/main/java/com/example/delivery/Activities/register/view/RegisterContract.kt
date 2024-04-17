@@ -1,6 +1,6 @@
 package com.example.delivery.Activities.register.view
 
-import com.example.delivery.data.models.User
+import com.example.delivery.Activities.register.entities.User
 
 interface RegisterContract {
 

@@ -3,5 +3,5 @@ package com.example.delivery.utils.enums
 enum class Roles (val label: String){
     restaurant("RESTAURANTE"),
     client("CLIENTE"),
-    provider("REPARTIDOR")
+    delivery("REPARTIDOR")
 }

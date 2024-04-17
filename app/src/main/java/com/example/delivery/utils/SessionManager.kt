@@ -1,10 +1,8 @@
 package com.example.delivery.utils
 
 import android.content.Context
-import android.se.omapi.Session
 import android.util.Log
-import com.example.delivery.Activities.select_roles.view.adapter.Roles
-import com.example.delivery.data.models.User
+import com.example.delivery.utils.enums.Roles
 import com.google.gson.Gson
 import java.lang.Exception
 
@@ -20,8 +18,7 @@ class SessionManager(context: Context) {
     fun setRememberSession(rememberSession: Boolean) {
         preferences.edit().putBoolean(AppConstants.REMEMBER_SESSION_KEY, rememberSession).apply()
     }
-
-    fun getUserRol(): String? = preferences.getString(AppConstants.USER_ROL, Roles.client.label)
+    fun getUserRol(): String? = preferences.getString(AppConstants.USER_ROL, null)
 
     fun setUserRol(rol: String) {
         preferences.edit().putString(AppConstants.USER_ROL, rol).apply()
