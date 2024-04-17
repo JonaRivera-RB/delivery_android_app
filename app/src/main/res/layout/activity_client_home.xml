@@ -5,7 +5,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Client.Home.ClientHomeActivity">
+    tools:context=".Activities.profiles.Client.Home.view.ClientHomeActivity">
+
+<FrameLayout
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_navigation_menu_client"
+        android:layout_gravity="bottom"
+        android:background="@color/green"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        />
+</FrameLayout>
+    <!--
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cliente" />
 
     <Button
         android:id="@+id/logout_button"
@@ -13,5 +35,5 @@
         android:layout_height="wrap_content"
         android:text="Cerrar sesión"
         android:layout_gravity="center"/>
-
+-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

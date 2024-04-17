@@ -7,9 +7,6 @@ import kotlinx.parcelize.Parcelize
 
 
 data class LoginModel (
-    @Expose
     val email: String,
-
-    @Expose
     val password: String
 )

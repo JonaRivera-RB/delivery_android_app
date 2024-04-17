@@ -2,7 +2,7 @@ package com.example.delivery.data.models.api.Providers
 
 import com.example.delivery.remove_code.routes.reprecated.ApiRoutes
 import com.example.delivery.data.models.ResponseHttp
-import com.example.delivery.data.models.User
+import com.example.delivery.Activities.register.entities.User
 import com.example.delivery.data.models.api.routes.UserRoutes
 import retrofit2.Call
 

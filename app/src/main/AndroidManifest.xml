@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:ignore="scopedStorage" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +21,18 @@
         android:theme="@style/Theme.Delivery"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".Activities.profile.profile_view.view.ClientUpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.profile.save_image.view.SaveImageActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".Activities.profiles.Delivery.home.view.DeliveryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.profiles.Restaurant.home.view.RestaurantActivity"
+            android:exported="false" />
         <activity
             android:name=".Activities.select_roles.view.SelectRolesActivity"
             android:exported="false" />
@@ -30,14 +47,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.Client.Home.ClientHomeActivity"
+            android:name=".Activities.profiles.Client.Home.view.ClientHomeActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.register.view.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.Login.LoginView.LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

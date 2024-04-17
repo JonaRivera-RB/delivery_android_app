@@ -1,6 +1,6 @@
 package com.example.delivery.Activities.register.data
 
-import com.example.delivery.data.models.User
+import com.example.delivery.Activities.register.entities.User
 
 interface RegisterDataSource {
 

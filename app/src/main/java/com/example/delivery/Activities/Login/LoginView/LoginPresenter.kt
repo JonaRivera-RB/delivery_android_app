@@ -2,9 +2,7 @@ package com.example.delivery.Activities.Login.LoginView
 
 import com.example.delivery.Activities.Login.LoginData.LoginDataSource
 import com.example.delivery.Activities.Login.LoginData.LoginRepository
-import com.example.delivery.data.models.User
-import com.google.gson.Gson
-import com.google.gson.JsonSyntaxException
+import com.example.delivery.Activities.register.entities.User
 
 class LoginPresenter (
     private val repository: LoginRepository,

@@ -1,14 +1,11 @@
-package com.example.delivery.data.api
-
 import android.content.Context
 import com.example.delivery.BuildConfig
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.example.delivery.data.api.Endpoints
+import com.example.delivery.Activities.register.entities.User
+import com.example.delivery.utils.SessionManager
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -17,71 +14,55 @@ class RetrofitService {
 
     class Builder {
         private lateinit var retrofit: Retrofit
-        private lateinit var httpBuilder: OkHttpClient.Builder
+        private val httpBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
 
         fun getApi(): Endpoints = retrofit.create(Endpoints::class.java)
 
-        fun addHeaders(context: Context?): Builder {
-            httpBuilder = OkHttpClient.Builder()
-            requestDebugging()
+        fun getRetrofit(context: Context?): Builder {
             interceptors(context)
             setup()
             return this
         }
 
         private fun setup() {
+            val client = getClient()
             retrofit = Retrofit.Builder()
                 .baseUrl(BuildConfig.API_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(httpClient())
+                .client(client)
                 .build()
         }
 
-        private fun httpClient(): OkHttpClient {
-            return httpBuilder
+        private fun getClient(): OkHttpClient =
+            httpBuilder
+                .addInterceptor(requestDebugging())
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .build()
-        }
 
-        private fun getGsonBuilder(): Gson =
-            GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
-
-        private fun requestDebugging() {
+        private fun requestDebugging(): HttpLoggingInterceptor {
             val logging = HttpLoggingInterceptor()
-
-            httpBuilder.addInterceptor(logging)
-
-            if (BuildConfig.DEBUG)
-                logging.level = HttpLoggingInterceptor.Level.BODY
-            else
-                logging.level = HttpLoggingInterceptor.Level.NONE
+            logging.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+            return logging
         }
-
         private fun interceptors(context: Context?) {
-            //val tokenAuthenticator= TokenAuthenticator(context)
 
             val jwt = if (context != null) {
-                ""//SessionManager.getInstance(context).getToken()
+                SessionManager.getInstance(context).getDataFromPreferences("user", User::class.java)?.session_token
             } else ""
 
             val interceptor = Interceptor { chain ->
                 val original = chain.request()
                 val request = original.newBuilder()
-                    //.addHeader("apikey", BuildConfig.API_KEY)
                     .addHeader("Content-Type", "application/json")
 
-                if (jwt.isNotEmpty()) {
-                    request.addHeader("Authorization", "Bearer $jwt")
+                if (jwt?.isNotEmpty() == true) {
+                    request.addHeader("Authorization", jwt)
                 }
-
-                request.method(original.method(), original.body())
 
                 chain.proceed(request.build())
             }
 
-            //httpBuilder.authenticator(tokenAuthenticator)
             httpBuilder.addInterceptor(interceptor)
         }
     }
