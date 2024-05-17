@@ -18,6 +18,11 @@ class SessionManager(context: Context) {
     fun setRememberSession(rememberSession: Boolean) {
         preferences.edit().putBoolean(AppConstants.REMEMBER_SESSION_KEY, rememberSession).apply()
     }
+
+    fun setTokenSession(sessionToken: String) {
+        preferences.edit().putString(AppConstants.TOKEN, sessionToken).apply()
+    }
+    fun getTokenSession(): String? = preferences.getString(AppConstants.TOKEN, null)
     fun getUserRol(): String? = preferences.getString(AppConstants.USER_ROL, null)
 
     fun setUserRol(rol: String) {

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.example.delivery.Activities.Login.LoginView.LoginActivity
 import com.example.delivery.Activities.profile.profile_view.view.ClientUpdateActivity

@@ -24,6 +24,8 @@ class RegisterRemote(private val context: Context): RegisterDataSource {
                     val user: User? = response.deserializeToObject(User::class.java)
 
                     if (user != null ) {
+                        val sesionToken = user.session_token ?: return callback.error("token invalido")
+                        SessionManager.getInstance(context).setTokenSession(sesionToken)
                         SessionManager.getInstance(context).setRememberSession(true)
                         saveUserInSession(user)
                         callback.success(response.body()?.message ?: "Registrado con éxito", "1")

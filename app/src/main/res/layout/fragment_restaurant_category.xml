@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.profiles.Restaurant.home.view.fragments.RestaurantCategoryFragment">
+    tools:context=".Activities.profiles.Restaurant.categories.views.RestaurantCategoryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Restaurant category " />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/category_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/add_image"
+            android:background="@color/gray_light"/>
+
+        <EditText
+            android:id="@+id/category_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Nombre de la categoria"
+            android:background="@drawable/edit_text_custom"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="15dp"
+            android:inputType="text"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_category_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CREAR CATEGORIA"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="100dp"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -7,5 +7,6 @@ class AppConstants {
 
         const val REMEMBER_SESSION_KEY = "remember_session"
         const val USER_ROL = "userRol"
+        const val TOKEN = "token"
     }
 }

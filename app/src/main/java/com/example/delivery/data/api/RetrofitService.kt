@@ -48,7 +48,7 @@ class RetrofitService {
         private fun interceptors(context: Context?) {
 
             val jwt = if (context != null) {
-                SessionManager.getInstance(context).getDataFromPreferences("user", User::class.java)?.session_token
+                SessionManager.getInstance(context).getTokenSession()
             } else ""
 
             val interceptor = Interceptor { chain ->
