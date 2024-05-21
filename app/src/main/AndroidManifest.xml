@@ -9,6 +9,8 @@
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         tools:ignore="scopedStorage" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -22,11 +24,35 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.profile.profile_view.view.ClientUpdateActivity"
+            android:name=".Activities.profiles.Client.Payments.ClientPaymentFormActivity"
             android:exported="false" />
         <activity
+            android:name=".Activities.profiles.Client.address.map.ClientAddressMapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.profiles.Client.address.create.AddressCreateClientActivity"
+            android:exported="false"
+            android:parentActivityName=".Activities.profiles.Client.address.list.AddressListClientActivity" />
+        <activity
+            android:name=".Activities.profiles.Client.address.list.AddressListClientActivity"
+            android:exported="false"
+            android:parentActivityName=".Activities.profiles.Client.ShoppingBag.view.ShoppingBagClientActivity" />
+        <activity
+            android:name=".Activities.profiles.Client.ShoppingBag.view.ShoppingBagClientActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.profiles.Client.productDetail.view.ProductDetailClientActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.profiles.Client.products.view.ProductListClientActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.profile.profile_view.view.ClientUpdateActivity"
+            android:exported="false"
+            android:parentActivityName=".Activities.profiles.Client.Home.view.ClientHomeActivity" />
+        <activity
             android:name=".Activities.profile.save_image.view.SaveImageActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".Activities.profiles.Delivery.home.view.DeliveryActivity"
             android:exported="false" />
@@ -55,6 +81,10 @@
         <activity
             android:name=".Activities.Login.LoginView.LoginActivity"
             android:exported="true" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBgU74JpOD6S1gcYq-iWwtpHb_ElaK3gXg" />
     </application>
 
 </manifest>

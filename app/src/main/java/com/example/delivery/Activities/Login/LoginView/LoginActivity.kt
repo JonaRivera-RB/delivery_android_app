@@ -18,6 +18,8 @@ import com.example.delivery.Activities.select_roles.view.SelectRolesActivity
 import com.example.delivery.utils.Extensions.isEmailValid
 import com.example.delivery.R
 import com.example.delivery.Activities.register.entities.User
+import com.example.delivery.utils.AppConstants
+import com.example.delivery.utils.SessionManager
 import com.example.delivery.utils.SharedPref
 import com.example.delivery.utils.objects.LoadingView
 import com.google.gson.Gson
@@ -34,6 +36,8 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        SessionManager.getInstance(this).remove(AppConstants.TOKEN)
 
         presenter = LoginPresenter(Injection.loginRepository(applicationContext), this)
         goToRegisterImageView = findViewById(R.id.register_image_view)

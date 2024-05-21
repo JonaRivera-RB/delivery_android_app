@@ -1,12 +1,14 @@
 import android.content.Context
 import com.example.delivery.BuildConfig
 import com.example.delivery.data.api.Endpoints
-import com.example.delivery.Activities.register.entities.User
 import com.example.delivery.utils.SessionManager
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -33,6 +35,9 @@ class RetrofitService {
                 .build()
         }
 
+        private fun getGsonBuilder(): Gson =
+            GsonBuilder().create()
+
         private fun getClient(): OkHttpClient =
             httpBuilder
                 .addInterceptor(requestDebugging())
@@ -48,7 +53,7 @@ class RetrofitService {
         private fun interceptors(context: Context?) {
 
             val jwt = if (context != null) {
-                SessionManager.getInstance(context).getDataFromPreferences("user", User::class.java)?.session_token
+                SessionManager.getInstance(context).getTokenSession()
             } else ""
 
             val interceptor = Interceptor { chain ->

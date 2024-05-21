@@ -24,6 +24,8 @@ class LoginRemote(private val context: Context): LoginDataSource {
                     val user: User? = response.deserializeToObject(User::class.java)
 
                     if (user != null ) {
+                        val sesionToken = user.session_token ?: return callback.error("token invalido")
+                        SessionManager.getInstance(context).setTokenSession(sesionToken)
                         SessionManager.getInstance(context).setRememberSession(true)
                         saveUserInSession(user)
                         callback.success(user)

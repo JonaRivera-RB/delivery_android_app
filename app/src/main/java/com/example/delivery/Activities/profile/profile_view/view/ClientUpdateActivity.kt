@@ -3,19 +3,17 @@ package com.example.delivery.Activities.profile.profile_view.view
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.delivery.Activities.Injection
-import com.example.delivery.Activities.profile.save_image.view.SaveImagePresenter
 import com.example.delivery.R
-import com.example.delivery.data.models.ResponseHttp
 import com.example.delivery.Activities.register.entities.User
-import com.example.delivery.data.utils.ResponseUtils.deserializeToObject
 import com.example.delivery.utils.SessionManager
 import com.example.delivery.utils.objects.LoadingView
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -24,9 +22,6 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.File
 
 class ClientUpdateActivity : AppCompatActivity(), ClientUpdateContract.View {
@@ -36,6 +31,7 @@ class ClientUpdateActivity : AppCompatActivity(), ClientUpdateContract.View {
     private lateinit var lastNameEditText: EditText
     private lateinit var phoneNumberEditText: EditText
     private lateinit var updateButton: Button
+    private lateinit var toolbar: Toolbar
 
     private var user: User?= null
     private var imageFile: File?= null
@@ -52,6 +48,12 @@ class ClientUpdateActivity : AppCompatActivity(), ClientUpdateContract.View {
         lastNameEditText = findViewById(R.id.last_name_edit_text)
         phoneNumberEditText = findViewById(R.id.phone_number_edit_text)
         updateButton = findViewById(R.id.update_profile_button)
+
+        toolbar = findViewById(R.id.toolbar)
+        toolbar.title = "Editar perfil"
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.black))
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         getUserFromSession()
 
