@@ -9,8 +9,7 @@
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         tools:ignore="scopedStorage" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
@@ -24,6 +23,9 @@
         android:theme="@style/Theme.Delivery"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".Activities.profiles.Client.Payments.ClientPaymentFormActivity"
+            android:exported="false" />
         <activity
             android:name=".Activities.profiles.Client.address.map.ClientAddressMapActivity"
             android:exported="false" />
@@ -82,7 +84,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBgU74JpOD6S1gcYq-iWwtpHb_ElaK3gXg"/>
+            android:value="AIzaSyBgU74JpOD6S1gcYq-iWwtpHb_ElaK3gXg" />
     </application>
 
 </manifest>

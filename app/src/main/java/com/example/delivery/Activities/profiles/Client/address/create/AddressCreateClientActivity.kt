@@ -79,7 +79,7 @@ class AddressCreateClientActivity : AppCompatActivity() {
 
         if (isValidForm(address, neighborhood)) {
             val userId = SessionManager.getInstance(this).getDataFromPreferences("user", User::class.java)?.id ?: return
-            val address = AddressModel(idUser = userId, address = address, neighborhood = neighborhood, lat = addressLat, lng = addressLng)
+            val address = AddressModel(null, userId, address, neighborhood, addressLat, addressLng)
 
             createAddress(address)
         }

@@ -59,4 +59,9 @@ interface Endpoints {
     fun createAddress(
         @Body address: AddressModel
     ): Call<ResponseHttp>
+
+    @GET("address/findByUser/{id_user}")
+    fun getAllAddressByUser(
+        @Path("id_user") idUser: String
+    ): Call<ArrayList<AddressModel>>
 }
