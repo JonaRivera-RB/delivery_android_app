@@ -35,7 +35,7 @@ android {
         debug {
             isMinifyEnabled = true
             versionNameSuffix = "-debug"
-            buildConfigField("String", "API_BASE_URL", "\"http://192.168.1.66:3000/api/\"")
+            buildConfigField("String", "API_BASE_URL", "\"http://192.168.1.67:3000/api/\"")
         }
     }
     compileOptions {
@@ -82,5 +82,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.android.gms:play-services-location:21.2.0")
     implementation("com.google.maps.android:android-maps-utils:2.2.3")
+
+    //View pager
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
 
 }

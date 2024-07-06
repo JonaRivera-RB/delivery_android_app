@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.delivery.Activities.profiles.Client.Payments.ClientPaymentFormActivity
 import com.example.delivery.Activities.profiles.Client.address.create.AddressCreateClientActivity
 import com.example.delivery.Activities.profiles.Client.address.create.data.AddressModel
+import com.example.delivery.Activities.profiles.Client.orders.models.Order
+import com.example.delivery.Activities.profiles.Restaurant.RestaurantProduct.entities.Product
 import com.example.delivery.Activities.register.entities.User
 import com.example.delivery.R
 import com.example.delivery.utils.SessionManager
@@ -38,10 +40,12 @@ class AddressListClientActivity : AppCompatActivity() {
     var sharedPref: SharedPref? = null
 
     var address = ArrayList<AddressModel>()
+    var selectedProducts = ArrayList<Product>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_address_list_client)
+
         sharedPref = SharedPref(this)
 
         createAddressFab = findViewById(R.id.fab_address_create)
@@ -65,7 +69,7 @@ class AddressListClientActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        //getProductsFromSharedPref()
+        getProductsFromSharedPref()
         getUserFromSession()
         getAddress()
     }
@@ -123,5 +127,21 @@ class AddressListClientActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "selecciona una direccion para continuar", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun getProductsFromSharedPref() {
+        if(!sharedPref?.getData("order").isNullOrBlank()) {
+            // val type = object : TypeToken<ArrayList<Product>>() {}.type
+            val products = Gson().fromJson(sharedPref?.getData("order"), Array<Product>::class.java)
+            selectedProducts.addAll(products)
+        }
+    }
+
+    private fun createOrder(idAddress: String) {
+        val order = Order(
+            products = selectedProducts,
+            idClient =  user?.id,
+            idAddress = idAddress
+        )
     }
 }

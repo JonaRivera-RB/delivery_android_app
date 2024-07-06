@@ -2,10 +2,12 @@ package com.example.delivery.data.api
 
 import com.example.delivery.Activities.Login.Entities.LoginModel
 import com.example.delivery.Activities.profiles.Client.address.create.data.AddressModel
+import com.example.delivery.Activities.profiles.Client.orders.models.Order
 import com.example.delivery.Activities.profiles.Restaurant.RestaurantProduct.entities.Product
 import com.example.delivery.Activities.profiles.Restaurant.home.entities.Category
 import com.example.delivery.data.models.ResponseHttp
 import com.example.delivery.Activities.register.entities.User
+import com.example.delivery.data.models.NewResponseHttp
 import okhttp3.Address
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -25,7 +27,7 @@ interface Endpoints {
     fun register(@Body user: User): Call<ResponseHttp>
 
     @POST("users/login")
-    fun login(@Body body: LoginModel): Call<ResponseHttp>
+    fun login(@Body body: LoginModel): Call<NewResponseHttp>
 
     @Multipart
     @PUT("users/update")
@@ -64,4 +66,38 @@ interface Endpoints {
     fun getAllAddressByUser(
         @Path("id_user") idUser: String
     ): Call<ArrayList<AddressModel>>
+
+    @POST("orders/create")
+    fun createOrder(
+        @Body order: Order
+    ): Call<ResponseHttp>
+
+    @GET("orders/findByStatus/{status}")
+    fun getOrdersByStatus(
+        @Path("status") status: String
+    ): Call<ArrayList<Order>>
+
+    @GET("orders/findByClientAndStatus/{id_client}/{status}")
+    fun getOrdersByClientAndStatus(
+        @Path("id_client") idClient: String,
+        @Path("status") status: String
+    ): Call<ArrayList<Order>>
+
+    @PUT("orders/updateToDispatched")
+    fun updateToDispatchedOrder(
+        @Body order: Order
+    ): Call<NewResponseHttp>
+
+    @GET("users/findDeliveryMen")
+    fun getDeliveryMen(): Call<ArrayList<User>>
+
+    @GET("orders/findByDeliveryAndStatus/{id_delivery}/{status}")
+    fun getOrdersByDeliveryAndStatus(
+        @Path("id_delivery") idDelivery: String,
+        @Path("status") status: String
+    ): Call<ArrayList<Order>>
+    @PUT("orders/updateToOnTheWay")
+    fun updateToOnTheWay(
+        @Body order: Order
+    ): Call<NewResponseHttp>
 }

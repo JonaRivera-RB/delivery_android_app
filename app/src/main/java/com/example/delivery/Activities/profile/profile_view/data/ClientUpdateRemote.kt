@@ -25,10 +25,9 @@ class ClientUpdateRemote(private val context: Context): ClientUpdateDataSource {
 
         call.enqueue(object : Callback<ResponseHttp> {
             override fun onResponse(p0: Call<ResponseHttp>, response: Response<ResponseHttp>) {
-                val user = response.deserializeToObject(User::class.java)
-
-                if (user != null) {
-                    val sesionToken = user.session_token ?: return callback.error("token invalido")
+                if (response.body() != null) {
+                    val user = response.body() as User
+                    val sesionToken = user.sessionToken ?: return callback.error("token invalido")
                     SessionManager.getInstance(context).setTokenSession(sesionToken)
                     SessionManager.getInstance(context).setRememberSession(true)
                     saveUserInSession(user)

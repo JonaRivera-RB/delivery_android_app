@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.delivery.Activities.Login.Entities.LoginModel
 import com.example.delivery.data.models.ResponseHttp
 import com.example.delivery.Activities.register.entities.User
+import com.example.delivery.data.models.NewResponseHttp
 import com.example.delivery.data.utils.ResponseUtils.deserializeToObject
 import com.example.delivery.utils.SessionManager
 import retrofit2.Call
@@ -17,14 +18,14 @@ class LoginRemote(private val context: Context): LoginDataSource {
             .getApi()
             .login(LoginModel(email, password))
 
-        call.enqueue(object : Callback<ResponseHttp>{
-            override fun onResponse(call: Call<ResponseHttp>, response: Response<ResponseHttp>) {
+        call.enqueue(object : Callback<NewResponseHttp>{
+            override fun onResponse(call: Call<NewResponseHttp>, response: Response<NewResponseHttp>) {
                 if(response.isSuccessful) {
 
-                    val user: User? = response.deserializeToObject(User::class.java)
+                    val user: User? = response?.body()?.data
 
                     if (user != null ) {
-                        val sesionToken = user.session_token ?: return callback.error("token invalido")
+                        val sesionToken = user.sessionToken ?: return callback.error("token invalido")
                         SessionManager.getInstance(context).setTokenSession(sesionToken)
                         SessionManager.getInstance(context).setRememberSession(true)
                         saveUserInSession(user)
@@ -40,7 +41,7 @@ class LoginRemote(private val context: Context): LoginDataSource {
                 callback.error(errorMessage)
             }
 
-            override fun onFailure(call: Call<ResponseHttp>, t: Throwable) {
+            override fun onFailure(call: Call<NewResponseHttp>, t: Throwable) {
                 val errorMessage = "Ocurrío un error"
                 callback.error(errorMessage)
             }

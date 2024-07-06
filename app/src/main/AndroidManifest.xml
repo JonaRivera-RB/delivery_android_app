@@ -24,6 +24,20 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.profiles.Delivery.map.DeliveryOrdersMapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.profiles.Delivery.home.orders.details.DeliveryOrdersDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.profiles.Restaurant.orders.RestaurantOrderDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".Activities.profiles.Restaurant.home.view.RestaurantActivity" />
+        <activity
+            android:name=".Activities.profiles.Client.orders.views.orderDetail.ClientOrdersDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".Activities.profiles.Client.Home.view.ClientHomeActivity" />
+        <activity
             android:name=".Activities.profiles.Client.Payments.ClientPaymentFormActivity"
             android:exported="false" />
         <activity

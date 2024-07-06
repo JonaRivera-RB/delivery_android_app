@@ -1,10 +1,9 @@
 package com.example.delivery.Activities.profiles.Client.Home.view
 
+import ClientOrdersFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.delivery.Activities.profiles.Client.categoriesClients.view.ClientCategoriesFragment
-import com.example.delivery.Activities.profiles.Client.fragments.ClientOrdersFragment
-import com.example.delivery.Activities.profiles.Client.fragments.ClientProfileFragment
 import com.example.delivery.R
 import com.example.delivery.utils.objects.FragmentUtils
 import com.example.delivery.utils.SharedPref

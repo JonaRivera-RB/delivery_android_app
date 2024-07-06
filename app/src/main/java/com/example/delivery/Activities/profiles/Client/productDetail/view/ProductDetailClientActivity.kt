@@ -93,7 +93,7 @@ class ProductDetailClientActivity : AppCompatActivity() {
         val index = product?.id?.let { getIndexOf(it) }
 
         if(index == -1) {
-            if(product?.quantity == 0) {
+            if(product?.quantity == null) {
                 product?.quantity = 1
             }
 

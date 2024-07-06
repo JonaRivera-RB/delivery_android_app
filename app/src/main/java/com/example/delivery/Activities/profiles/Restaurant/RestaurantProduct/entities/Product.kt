@@ -5,12 +5,12 @@ import com.google.gson.annotations.SerializedName
 
 class Product(
     @SerializedName("id") val id: String ?= null,
-    @SerializedName("name") val name: String,
-    @SerializedName("description") val description: String,
+    @SerializedName("name") val name: String ?= null,
+    @SerializedName("description") val description: String ?= null,
     @SerializedName("image1") val image1: String ?= null,
     @SerializedName("image2") val image2: String ?= null,
     @SerializedName("image3") val image3: String ?= null,
-    @SerializedName("id_category") val id_category: String,
+    @SerializedName("id_category") val id_category: String ?= null,
     @SerializedName("price") val price: Double,
     @SerializedName("quantity") var quantity: Int ?= null
 ) {

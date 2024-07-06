@@ -4,42 +4,35 @@ import android.os.Parcelable
 import com.example.delivery.data.models.Rol
 import com.google.gson.Gson
 import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
-@Parcelize
-data class User (
-    @Expose
+class User (
+    @SerializedName(value = "id")
     val id: String? = null,
-
-    @Expose
+    @SerializedName(value = "name")
     var name: String ?= null,
-
-    @Expose
+    @SerializedName(value = "lastname")
     var lastname: String ?= null,
-
-    @Expose
+    @SerializedName(value = "email")
     val email: String ?= null,
-
-    @Expose
+    @SerializedName(value = "phone")
     var phone: String ?= null,
-
-    @Expose
+    @SerializedName(value = "password")
     val password: String ?= null,
-
-    @Expose
+    @SerializedName(value = "image")
     val image: String? = null,
-
-    //@SerializedName(value = "session_token")
-    @Expose
-    val session_token: String? = null,
-
-    //@SerializedName(value = "is_available")
-    @Expose
-    val is_available: String? = null,
-
-    @Expose
+    @SerializedName(value = "session_token")
+    val sessionToken: String? = null,
+    @SerializedName(value = "is_available")
+    val isAvailable: String? = null,
+    @SerializedName(value = "roles")
     val roles: ArrayList<Rol>? = null
-): Parcelable {
+) {
     fun toJson(): String {
         return Gson().toJson(this)
+    }
+
+    override fun toString(): String {
+        return "${name} ${lastname}"
     }
 }

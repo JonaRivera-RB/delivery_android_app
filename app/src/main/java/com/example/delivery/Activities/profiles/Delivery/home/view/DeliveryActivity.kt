@@ -2,7 +2,7 @@ package com.example.delivery.Activities.profiles.Delivery.home.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.delivery.Activities.profiles.Client.fragments.ClientProfileFragment
+import com.example.delivery.Activities.profiles.Client.Home.view.ClientProfileFragment
 import com.example.delivery.Activities.profiles.Delivery.home.fragments.DeliveryOrdersFragment
 import com.example.delivery.R
 import com.example.delivery.utils.objects.FragmentUtils

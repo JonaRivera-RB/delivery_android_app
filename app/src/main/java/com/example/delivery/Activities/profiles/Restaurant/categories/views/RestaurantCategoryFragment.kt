@@ -83,7 +83,7 @@ class RestaurantCategoryFragment : Fragment() {
                             val user: User? = response.deserializeToObject(User::class.java)
 
                             if (user != null) {
-                                val sesionToken = user.session_token ?: return
+                                val sesionToken = user.sessionToken ?: return
                                 SessionManager.getInstance(requireContext())
                                     .setTokenSession(sesionToken)
                                 SessionManager.getInstance(requireContext())

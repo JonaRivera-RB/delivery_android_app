@@ -1,5 +1,6 @@
 package com.example.delivery.data.utils
 
+import android.util.Log
 import com.example.delivery.data.models.ResponseHttp
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
@@ -11,6 +12,7 @@ object ResponseUtils {
             try {
                 Gson().fromJson(responseBody.data, clazz)
             } catch (e: JsonSyntaxException) {
+                Log.d("ERROR","${e}")
                 null
             }
         }

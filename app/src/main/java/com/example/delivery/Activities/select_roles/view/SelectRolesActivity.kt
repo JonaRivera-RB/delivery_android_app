@@ -41,8 +41,8 @@ class SelectRolesActivity : AppCompatActivity(), SelectRoleContract.View, RolCli
     }
     override fun updateUserFromSession() {
         user = SessionManager.getInstance(this).getDataFromPreferences("user", User::class.java)
-        val rolesList = Gson().fromJson(user?.roles.toString(), Array<Rol>::class.java)
-        roles.addAll(rolesList)
+        val userRoles = user?.roles ?: return
+        roles.addAll(userRoles)
     }
 
     override fun onRolClicked(rol: Rol) {
